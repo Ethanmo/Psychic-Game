@@ -4,24 +4,59 @@
 
     <head>
         <title>WordGuessGame</title>
-        <script src="assests/javascript/game.js"></script>
+        <link rel="stylesheet" type="text/css" href="assests/css/style.css">
     </head>
 
     <body>
-        <p id="wins"></p>
-        <p id="game"></p>
-        <p id="remain"></p>
-        <p id="guessed"></p>
+        <div class="content">
+            <div class="header" id="pageHeader">
+                <h1>
+                    Guess Who I am
+                </h1>
+            </div>
 
+            <div class="game">
+                <div id="pic"></div>
+                <div id="start">Press any key to start</div>
+                <div id="gameInfo">
+                    <div id="current"></div>
+                    <div id="remain"></div>
+                    <div id="wrong"></div>
+                    <div class="score">
+                        <div>Wins : 
+                            <span id="wins"></span>
+                        </div>
+                    </div>
+                    <div class="score" id="losses"></div>
+                </div>
+            </div>
+        
 
-        <script>
-            var answer = game.wordPicker();
-            var curret = game.hide(answer);
-
-            
+        </div>
         
         
-        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- <div id="start">Press any key to start</div>
+        <div id="current"></div>
+        <div id="remain"></div>
+        <div id="wrong"></div>
+        <div id="wins"></div>
+        <div id="losses"></div> -->
+
+        <script src="assests/javascript/game.js"></script>
     </body>
 
 
