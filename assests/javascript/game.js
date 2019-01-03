@@ -131,10 +131,13 @@ function gameOver(){
     if (answer === current) {
         //game over and win
         wins++;
+        reset();
     } else if(guessesRemain === 0) {
         //game over and loss
         losses++;
+        reset();
     }
+    // display current, wrongGuesses,guessesRemain,wins,losses
 }
 
 function reset(){
@@ -150,7 +153,7 @@ document.onkeyup = function(event){
     var input = event.key.toLowerCase();
     if (input.isLetter()){
         update(input);
-
+        gameOver();
     }
 
 }
