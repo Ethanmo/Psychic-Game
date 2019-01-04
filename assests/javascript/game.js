@@ -14,6 +14,8 @@ var answer = "";
 var current = "";
 var wrongGuesses = [];
 var guessesRemain = 7;
+//because I use setTimeout on an audio function which runs after a new game is initiated, 
+//I need this temp to store the previous answer in order to play the correct sound
 var temp = "";
 
 // pick a random word from wordlist
@@ -54,7 +56,6 @@ function isLetter(char){
 //initiate the game by giving value to empty variables declared at the beginning
 function initiateGame(){
     answer = wordPicker(wordList);
-    console.log(answer + ' 1');
     for (var i = 0; i < answer.length; i++){
         current += '_';
     }
@@ -89,7 +90,6 @@ function gameProgress(){
     if (answer === current) {
         //game over and win
         winSound();
-        console.log(answer + ' 2');
         audioImg();
         wins++;
         reset();
@@ -111,7 +111,9 @@ function gameProgress(){
 
 //when win or run out of guesses, reveal answer and reset the game
 function reset(){
+    //collect the answer from the last game for the right audio to play
     temp = answer;
+    //reveal correct answer before the answer is reset
     document.getElementById('remain').innerHTML = "The Pokemon was : " + answer;
     answer = "";
     current = "";
@@ -119,9 +121,9 @@ function reset(){
     guessesRemain = 7;
     document.getElementById('start').innerHTML = 'Press any key to play again';
     initiateGame();
-    //setTimeout(initiateGame, 2000);
 }
 
+//audio variables to be called in functions
 var bulbasaurAud = document.getElementById('bulbasaurAud');
 var weedleAud = document.getElementById('weedleAud');
 var geodudeAud = document.getElementById('geodudeAud');
@@ -129,6 +131,7 @@ var pikachuAud = document.getElementById('pikachuAud');
 var magikarpAud = document.getElementById('magikarpAud');
 var MewtwoAud = document.getElementById('MewtwoAud');
 
+//put audio variables into an array for easier access
 var soundArray = [
     bulbasaurAud, 
     weedleAud, 
@@ -138,11 +141,12 @@ var soundArray = [
     MewtwoAud
 ]
 
+//utility audios
 var correctSound = document.getElementById('correctSound');
 var clickSound = document.getElementById('clickSound');
 var faintSound = document.getElementById('faint');
 
-
+//some utility sounds functions
 function winSound(){
     correctSound.play();
 }
@@ -160,17 +164,17 @@ function audioImg() {
     //set img to according pokemon
     document.getElementById('pic').src = "assests/img/" + answer + ".png";
     //set a delay before the cry of the pokemon is played
-    setTimeout(pokemonSound, 2000);
+    setTimeout(pokemonSound, 1500);
     //pokemonSound();
 }
 
 //play the cry of the pokemon
 function pokemonSound(){
-    console.log(temp + ' 3');
-    console.log(wordList.indexOf(temp));
     soundArray[wordList.indexOf(temp)].play();
 }
 
+
+//From here is where the game starts
 //call the function to start the game
 initiateGame();
 
