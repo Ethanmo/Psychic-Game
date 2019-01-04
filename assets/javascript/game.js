@@ -97,7 +97,7 @@ function gameProgress(){
     } else if(guessesRemain === 0) {
         //game over and loss
         lossSound();
-        document.getElementById('pic').src = "assests/img/fainted.jpg";
+        document.getElementById('pic').src = "assets/img/fainted.jpg";
         losses++;
         reset();
         document.getElementById('current').innerHTML = "You lose";
@@ -162,7 +162,7 @@ function playClickSound(){
 //audio and image after win
 function audioImg() {
     //set img to according pokemon
-    document.getElementById('pic').src = "assests/img/" + answer + ".png";
+    document.getElementById('pic').src = "assets/img/" + answer + ".png";
     //set a delay before the cry of the pokemon is played
     setTimeout(pokemonSound, 1500);
     //pokemonSound();
