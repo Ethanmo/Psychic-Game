@@ -5,33 +5,74 @@
     <head>
         <title>WordGuessGame</title>
         <link rel="stylesheet" type="text/css" href="assests/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Sarpanch" rel="stylesheet">
+
     </head>
 
     <body>
         <div class="content">
             <div class="header" id="pageHeader">
-                <h1>
-                    Guess Who I am
-                </h1>
+                <img src="assests/img/icon.jpg" width=400px height=auto>
             </div>
 
             <div class="game">
-                <div id="pic"></div>
-                <div id="start">Press any key to start</div>
-                <div id="gameInfo">
+                <h2 class="blink" id="start">Press any key to start</h2>
+                <div id="pic">
+                    <img src="assests/img/egg.gif" height=200px width=30%>
+                </div>
+               
+                <div class="gameInfo">
                     <div id="current"></div>
-                    <div id="remain"></div>
-                    <div id="wrong"></div>
+                    <div id="remainDiv">
+                        <h3> 
+                            <span id="remain"></span>
+                        </h3>
+                    </div>
+                    <div id="wrongGuess">
+                        <h3>Wrong guesses : <span id="wrong"></span>
+                        </h3>
+                    </div>
                     <div class="score">
-                        <div>Wins : 
+                        <h3>Wins : 
                             <span id="wins"></span>
-                        </div>
+                        </h3>
+                        <h3>Losses : 
+                            <span id="losses"></span>
+                        </h3>
                     </div>
                     <div class="score" id="losses"></div>
                 </div>
             </div>
         
 
+        </div>
+
+        <!-- audio div -->
+        <div>
+            <audio id="bulbasaurAud">
+                <source src="assests/audio/bulbasaur.mp3" type="audio/mp3">
+            </audio>
+            <audio id="weedleAud">
+                <source src="assests/audio/weedle.mp3" type="audio/mp3">
+            </audio>
+            <audio id="geodudeAud">
+                <source src="assests/audio/geodude.mp3" type="audio/mp3">
+            </audio>
+            <audio id="pikachuAud">
+                <source src="assests/audio/pikachu.mp3" type="audio/mp3">
+            </audio>
+            <audio id="magikarpAud">
+                <source src="assests/audio/magikarp.mp3" type="audio/mp3">
+            </audio>
+            <audio id="MewtwoAud">
+                <source src="assests/audio/mewtwo.mp3" type="audio/mp3">
+            </audio>
+            <audio id="correctSound">
+                <source src="assests/audio/correct.wav" type="audio/mp3">
+            </audio>
+            <audio id="clickSound">
+                <source src="assests/audio/click.mp3" type="audio/mp3">
+            </audio>
         </div>
         
         
@@ -47,14 +88,7 @@
         
         
         
-        
-        
-        <!-- <div id="start">Press any key to start</div>
-        <div id="current"></div>
-        <div id="remain"></div>
-        <div id="wrong"></div>
-        <div id="wins"></div>
-        <div id="losses"></div> -->
+    
 
         <script src="assests/javascript/game.js"></script>
     </body>

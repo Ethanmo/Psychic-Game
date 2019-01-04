@@ -1,3 +1,71 @@
-#current {
-    letter-spacing: 2px;
+html body {
+    box-sizing: border-box;
 }
+
+html {
+    background-image: url("../img/bg.jpg");
+    background-size: cover;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0px;
+}
+
+
+#current {
+    margin-top: 20px;
+    letter-spacing: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.content {
+    width: 40%;
+    margin: 0 30% 0 30%;
+    text-align: center;
+    background-color: wheat;
+    opacity: 0.95;
+    min-height: 780px;
+    overflow: auto;
+    
+}
+
+#wrong {
+    font-size: 25px;
+}
+
+h1 {
+    margin: 0;
+    padding-top: 20px;
+}
+
+#pageHeader { 
+    font-family: 'Abril Fatface', cursive;
+    font-size: 30px;
+    color: #ffae00;
+}
+
+#start {
+    font-family: 'Sarpanch', sans-serif;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .gameInfo{
+    font-family: 'Sarpanch', sans-serif;
+    font-size: 20px;
+    color: #3d1f10;
+  }
+

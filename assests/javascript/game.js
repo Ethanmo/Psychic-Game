@@ -68,8 +68,8 @@ function update(guess){
     //if answer doesn't contain guess
     if (!(containsLetter(answer, guess))){
         //if wrongGuesses list doesn't contain guess, add it
-        if (wrongGuesses.indexOf(guess) === -1){
-            wrongGuesses.push(guess);
+        if (wrongGuesses.indexOf(guess.toUpperCase()) === -1){
+            wrongGuesses.push(guess.toUpperCase());
             guessesRemain--;
         }
     } else {
@@ -87,17 +87,19 @@ function gameProgress(){
     console.log(current);
     if (answer === current) {
         //game over and win
+        winSound();
+        audioImg();
         wins++;
         reset();
-        document.getElementById('current').innerHTML = "WIN";
+        document.getElementById('current').innerHTML = "Win!";
     } else if(guessesRemain === 0) {
         //game over and loss
         losses++;
         reset();
-        document.getElementById('current').innerHTML = "LOSS";
+        document.getElementById('current').innerHTML = "You lose";
     } else {
         document.getElementById('current').innerHTML = current;
-        document.getElementById('remain').innerHTML = guessesRemain;
+        document.getElementById('remain').innerHTML = 'Guesses remain : ' + guessesRemain;
         document.getElementById('start').innerHTML = '';
     }
     
@@ -109,9 +111,48 @@ function reset(){
     answer = "";
     current = "";
     wrongGuesses = [];
-    guessesRemain = 10;
+    guessesRemain = 7;
     document.getElementById('start').innerHTML = 'Press any key to play again';
     initiateGame();
+}
+
+var bulbasaurAud = document.getElementById('bulbasaurAud');
+var weedleAud = document.getElementById('weedleAud');
+var geodudeAud = document.getElementById('geodudeAud');
+var pikachuAud = document.getElementById('pikachuAud');
+var magikarpAud = document.getElementById('magikarpAud');
+var MewtwoAud = document.getElementById('MewtwoAud');
+
+var soundArray = [
+    bulbasaurAud, 
+    weedleAud, 
+    geodudeAud, 
+    pikachuAud,
+    magikarpAud, 
+    MewtwoAud
+]
+
+var correctSound = document.getElementById('correctSound');
+var clickSound = document.getElementById('clickSound');
+
+function winSound(){
+    correctSound.play();
+}
+
+function playClickSound(){
+    clickSound.pause();
+    clickSound.play();
+}
+
+//audio and image after win
+function audioImg() {
+    //set img to according pokemon
+    
+    setTimeout(pokemonSound, 2000);
+}
+
+function pokemonSound(){
+    soundArray[wordList.indexOf(answer)].play();
 }
 
 //call the function to start the game
@@ -119,15 +160,16 @@ initiateGame();
 
 //takes in the user input and update 
 document.onkeyup = function(event){
+    playClickSound();
     var input = event.key.toLowerCase();
     console.log(input);
     if (isLetter(input)){
         update(input);
         gameProgress();
         // display current, wrongGuesses,guessesRemain,wins,losses
-        document.getElementById('wrong').innerHTML = wrongGuesses;
-        document.getElementById('wins').innerHTML = "WINS : " + wins;
-        document.getElementById('losses').innerHTML ="LOSSES : " + losses;
+        document.getElementById('wrong').innerHTML = wrongGuesses.join('  ');
+        document.getElementById('wins').innerHTML = wins;
+        document.getElementById('losses').innerHTML = losses;
     }
 
 
