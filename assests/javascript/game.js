@@ -14,6 +14,7 @@ var answer = "";
 var current = "";
 var wrongGuesses = [];
 var guessesRemain = 7;
+var temp = "";
 
 // pick a random word from wordlist
 function wordPicker(){
@@ -53,7 +54,7 @@ function isLetter(char){
 //initiate the game by giving value to empty variables declared at the beginning
 function initiateGame(){
     answer = wordPicker(wordList);
-    console.log(answer);
+    console.log(answer + ' 1');
     for (var i = 0; i < answer.length; i++){
         current += '_';
     }
@@ -88,12 +89,15 @@ function gameProgress(){
     if (answer === current) {
         //game over and win
         winSound();
+        console.log(answer + ' 2');
         audioImg();
         wins++;
         reset();
         document.getElementById('current').innerHTML = "Win!";
     } else if(guessesRemain === 0) {
         //game over and loss
+        lossSound();
+        document.getElementById('pic').src = "assests/img/fainted.jpg";
         losses++;
         reset();
         document.getElementById('current').innerHTML = "You lose";
@@ -107,6 +111,7 @@ function gameProgress(){
 
 //when win or run out of guesses, reveal answer and reset the game
 function reset(){
+    temp = answer;
     document.getElementById('remain').innerHTML = "The Pokemon was : " + answer;
     answer = "";
     current = "";
@@ -114,6 +119,7 @@ function reset(){
     guessesRemain = 7;
     document.getElementById('start').innerHTML = 'Press any key to play again';
     initiateGame();
+    //setTimeout(initiateGame, 2000);
 }
 
 var bulbasaurAud = document.getElementById('bulbasaurAud');
@@ -134,25 +140,35 @@ var soundArray = [
 
 var correctSound = document.getElementById('correctSound');
 var clickSound = document.getElementById('clickSound');
+var faintSound = document.getElementById('faint');
+
 
 function winSound(){
     correctSound.play();
 }
 
+function lossSound(){
+    faintSound.play();
+}
+
 function playClickSound(){
-    clickSound.pause();
     clickSound.play();
 }
 
 //audio and image after win
 function audioImg() {
     //set img to according pokemon
-    
+    document.getElementById('pic').src = "assests/img/" + answer + ".png";
+    //set a delay before the cry of the pokemon is played
     setTimeout(pokemonSound, 2000);
+    //pokemonSound();
 }
 
+//play the cry of the pokemon
 function pokemonSound(){
-    soundArray[wordList.indexOf(answer)].play();
+    console.log(temp + ' 3');
+    console.log(wordList.indexOf(temp));
+    soundArray[wordList.indexOf(temp)].play();
 }
 
 //call the function to start the game
